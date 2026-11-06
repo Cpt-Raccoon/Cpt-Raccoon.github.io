@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Peněženka – přesměrování</title>
+<meta name="robots" content="noindex">
+<style>body{font-family:system-ui,sans-serif;background:#111;color:#eee;display:grid;place-items:center;min-height:100vh;margin:0;padding:16px}a{color:#7fd1ae}</style>
+</head><body>
+<div><p>Přesměrování pro appku Peněženka.</p><p id="manual" hidden>Pokud se nic nestalo, <a id="link" href="#">klikni sem</a> (musíš být doma nebo na Tailscale).</p></div>
+<script>
+// Enable Banking accepts only https redirect URLs; forward the bank's answer to the home server.
+var SERVER = "http://192.168.1.64:8000/callback";
+var target = SERVER + window.location.search;
+document.getElementById("link").href = target;
+setTimeout(function(){ document.getElementById("manual").hidden = false; }, 3000);
+window.location.replace(target);
+</script>
+</body></html>
